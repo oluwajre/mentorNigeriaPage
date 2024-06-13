@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavigateForm } from '../utils/navigateForm'
 
 const ModuleSection = () => {
   return (
@@ -8,7 +9,7 @@ const ModuleSection = () => {
             <div className='module-row'>
                 <div className='module-info'>
                     <h3><span className='highlighter'>Module 1:</span> Professional Selling Skills for a Shy and Introverted Person</h3>
-                    <p>Duration: Five (5) days</p>
+                    <p>Learning Points: Fifty (50) points</p>
                     <br />
                     <ul>
                         <li>Using Telephone and Event Management for Success in Selling.</li>
@@ -20,8 +21,23 @@ const ModuleSection = () => {
                 </div>
 
                 <div className='module-info'>
-                    <h3><span className='highlighter'>Module 2:</span> Business Start-up Training</h3>
-                    <p>Duration: Seven (7) days</p>
+                    <h3><span className='highlighter'>Module 2:</span> School Growth Mentorship and Coaching Skills Development</h3>
+                    <p>Learning Points: Fourty (40) points</p>
+                    <br />
+                    <ul>
+                        <li>Training and Summit Management.</li>
+                        <li>Private School Growth Launchpad and Blueprint Training.</li>
+                        <li>School Growth Mentorship and Coaching System</li>
+                        <li>School Growth Consulting System.</li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div className='module-row'>
+            <div className='module-info'>
+                    <h3><span className='highlighter'>Module 3:</span> Business Start-up Training</h3>
+                    <p>Learning Points: Fifty (50) points</p>
                     <br />
                     <ul>
                         <li>Idea Generation and Market Research.</li>
@@ -34,23 +50,10 @@ const ModuleSection = () => {
                         <li>Business Management and Leadership Skills.</li>
                     </ul>
                 </div>
-            </div>
-            <div className='module-row'>
-            <div className='module-info'>
-                    <h3><span className='highlighter'>Module 3:</span> School Growth Mentorship and Coaching Skills Development</h3>
-                    <p>Duration: Four (4) days</p>
-                    <br />
-                    <ul>
-                        <li>Training and Summit Management.</li>
-                        <li>Private School Growth Launchpad and Blueprint Training.</li>
-                        <li>School Growth Mentorship and Coaching System</li>
-                        <li>School Growth Consulting System.</li>
-                    </ul>
-                </div>
 
                 <div className='module-info'>
                     <h3><span className='highlighter'>Module 4:</span> Virtual Assistant Skills, Tools and How to Emigrate through Sponsored Jobs</h3>
-                    <p>Duration: Six (6) days</p>
+                    <p>Learning Points: Fifty (50) points</p>
                     <br />
                     <ul>
                         <li>Core Skills for a Successfull Career.</li>
@@ -61,6 +64,10 @@ const ModuleSection = () => {
                     </ul>
                 </div>
             </div>
+
+            <div id='apply-btn-1'>
+            <div><button className='submit-btn' id='apply-btn' onClick={NavigateForm}>Apply Now</button></div>
+          </div>
         </div>
     </div>
   )

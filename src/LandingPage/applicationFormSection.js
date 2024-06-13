@@ -11,41 +11,64 @@ const ApplicationFormSection = () => {
     const [hear, setHear] = useState('');
     const [consent, setConsent] = useState(false);
 
+    const resetInput = () => {
+        setFirstName('');
+        setLastName('');
+        setWhatsapp('');
+        setPhone('');
+        setEmail('');
+        setLocation('');
+        setHear('');
+    }
+  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (firstName && lastName && whatsapp && phone && email && location && hear && consent) {
-            
-            const applicantData = {
-                First_Name: firstName,
-                Last_Name: lastName,
-                whatsapp: whatsapp,
-                phone: phone,
-                email: email,
-                location: location,
-                hear: hear,
-              };
 
-            try {
-                const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:Y1Oqmtn2/applicant', {
-                    method: 'POST',
-                    body: JSON.stringify(applicantData),
-                    headers: { 'Content-Type': 'application/json' },
-                });
+            if (whatsapp.length === 11 && phone.length === 11) {
 
-                if (!response.ok) {
-                    throw new Error (`API request failed with status ${response.status}`);
+                const applicantData = {
+                    First_Name: firstName,
+                    Last_Name: lastName,
+                    whatsapp: whatsapp,
+                    phone: phone,
+                    email: email,
+                    location: location,
+                    hear: hear,
+                  };
+    
+                try {
+                    const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:Y1Oqmtn2/applicant', {
+                        method: 'POST',
+                        body: JSON.stringify(applicantData),
+                        headers: { 'Content-Type': 'application/json' },
+                    });
+    
+                    if (!response.ok) {
+                        throw new Error (`API request failed with status ${response.status}`);
+                        
+                    }
+    
+                    else {
+                    alert (`Congratulations 🎉🎉 on Booking a Seat ${firstName}, we would contact you shortly with all the neccessary information needed.`);
+                    resetInput();
+                    }
+    
+                } catch (error) {
+                    alert(error || 'Error in Submitting, Try Again')
                 }
-                alert ('Successfull Data Transfer!');
-
-            } catch (error) {
-                alert(error || 'Error in Submitting, Try Again')
+    
             }
 
+            else {
+                alert ('Invalid Whatsapp/Phone Number');
+            }
+            
         }
         else{
-            alert('Please fill in all required Information')
+            alert('Please fill in all required Information and agree to terms and condition')
         }
     }
     

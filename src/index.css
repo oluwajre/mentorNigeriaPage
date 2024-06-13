@@ -126,7 +126,7 @@ body {
   margin-top: .5em;
   text-align: center;
   font-size: .7em;
-  max-width: 80%;
+  max-width: 90%;
   font-family: var(--font-family-sec);
 }
 
@@ -273,11 +273,15 @@ body {
   cursor: pointer;
 }
 
+.apply-btn-container {
+  padding-top: .5em;
+}
+
 #apply-btn {
-  color: var(--marker-clr);
-  font-size: 1em;
+  color: var(--pri-clr);
+  font-size: .4em;
   border-color: inherit;
-  background-color: var(--secondary-clr);
+  background-color: var(--marker-clr);
 }
 
 
@@ -326,6 +330,7 @@ body {
   color: var(--secondary-clr);
   padding: 1.2rem 8%;
   font-size: 4em;
+  gap: .2em;
 }
 
 .f-section-col {
@@ -337,6 +342,7 @@ body {
 
 .phone {
   align-items: center;
+  min-width: 108px;
 }
 
 
@@ -361,6 +367,15 @@ body {
   .footer-section-wrapper {
     font-size: 3em;
   }
+
+  /* .apply-btn-1 {
+    padding-left: 4rem;
+    width: 100%;
+  } */
+
+  /* #apply-btn {
+    font-size: 1.15em;
+  } */
 }
 
 @media (max-width: 579px) {
