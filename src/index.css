@@ -365,12 +365,13 @@ body {
 
 @media (max-width: 579px) {
   .hero-sec-wrapper {
-    height: 25vw;
+    height: 37vw;
     font-size: 2.5em;
   }
 
   .hero-sec-info {
     font-size: 2.5em;
+    padding: 1.5rem 4%;
   }
 
   .form-row-main {
