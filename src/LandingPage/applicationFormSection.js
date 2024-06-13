@@ -1,12 +1,60 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const ApplicationFormSection = () => {
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [whatsapp, setWhatsapp] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [location, setLocation] = useState('');
+    const [hear, setHear] = useState('');
+    const [consent, setConsent] = useState(false);
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (firstName && lastName && whatsapp && phone && email && location && hear && consent) {
+            
+            const applicantData = {
+                First_Name: firstName,
+                Last_Name: lastName,
+                whatsapp: whatsapp,
+                phone: phone,
+                email: email,
+                location: location,
+                hear: hear,
+              };
+
+            try {
+                const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:Y1Oqmtn2/applicant', {
+                    method: 'POST',
+                    body: JSON.stringify(applicantData),
+                    headers: { 'Content-Type': 'application/json' },
+                });
+
+                if (!response.ok) {
+                    throw new Error (`API request failed with status ${response.status}`);
+                }
+                alert ('Successfull Data Transfer!');
+
+            } catch (error) {
+                alert(error || 'Error in Submitting, Try Again')
+            }
+
+        }
+        else{
+            alert('Please fill in all required Information')
+        }
+    }
+    
   return (
     <div>
         <div id='application-form-section'>
             <div className='application-form-title'>Application Form</div>
             <div>
-                <form id='application-form'>
+                <form id='application-form' onSubmit={handleSubmit}>
                     <div className='form-row-main'>
                         <div className='form-row'>
                             <label htmlFor='firstName' className='input-labels'>First Name:</label>
@@ -16,6 +64,8 @@ const ApplicationFormSection = () => {
                                 name='firstName'
                                 placeholder='Mark'
                                 className='form-control'
+                                value={firstName}
+                                onChange={(e) => {setFirstName(e.target.value)}}
                             />
                         </div>
                         
@@ -27,6 +77,8 @@ const ApplicationFormSection = () => {
                                 name='lasttName'
                                 placeholder='Joe'
                                 className='form-control'
+                                value={lastName}
+                                onChange={(e) => {setLastName(e.target.value)}}
                             />
                         </div>
                     </div>
@@ -40,6 +92,8 @@ const ApplicationFormSection = () => {
                                 name='whatsappNumber'
                                 placeholder='09137819540'
                                 className='form-control'
+                                value={whatsapp}
+                                onChange={(e) => {setWhatsapp(e.target.value)}}
                             />
                         </div>
                         
@@ -51,6 +105,8 @@ const ApplicationFormSection = () => {
                                 name='phoneNumber'
                                 placeholder='09137819540'
                                 className='form-control'
+                                value={phone}
+                                onChange={(e) => {setPhone(e.target.value)}}
                             />
                         </div>
                     </div>
@@ -64,6 +120,8 @@ const ApplicationFormSection = () => {
                                 name='emailAddress'
                                 placeholder='markjoe@gmail.com'
                                 className='form-control'
+                                value={email}
+                                onChange={(e) => {setEmail(e.target.value)}}
                             />
                         </div>
                         
@@ -75,6 +133,8 @@ const ApplicationFormSection = () => {
                                 name='location'
                                 placeholder='Alimosho, Lagos'
                                 className='form-control'
+                                value={location}
+                                onChange={(e) => {setLocation(e.target.value)}}
                             />
                         </div>
                     </div>
@@ -87,6 +147,8 @@ const ApplicationFormSection = () => {
                                 id='hear'
                                 name='hear'
                                 placeholder='i.e Instagram'
+                                value={hear}
+                                onChange={(e) => {setHear(e.target.value)}}
                             ></textarea>
                         </div>
             
@@ -94,7 +156,11 @@ const ApplicationFormSection = () => {
 
                     <div className='form-row-main'>
                         <div className='form-row-consent'>
-                            <input type='checkbox'/>
+                            <input 
+                                type='checkbox'
+                                value={consent}
+                                onClick={(e) => {setConsent(e.target.checked)}}
+                            />
                             <div className='consent-text'>I consent to receive communications from MentorNigeria Academy about personal growth
                                 oppotunities, company and industry news, and other related content.
                             </div>
