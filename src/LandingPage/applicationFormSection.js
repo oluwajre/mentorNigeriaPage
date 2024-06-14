@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 
 const ApplicationFormSection = () => {
 
@@ -10,6 +10,9 @@ const ApplicationFormSection = () => {
     const [location, setLocation] = useState('');
     const [hear, setHear] = useState('');
     const [consent, setConsent] = useState(false);
+
+    const infoCate = useRef(null);
+
 
     const resetInput = () => {
         setFirstName('');
@@ -24,7 +27,6 @@ const ApplicationFormSection = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (firstName && lastName && whatsapp && phone && email && location && hear && consent) {
 
             if (whatsapp.length === 11 && phone.length === 11) {
@@ -40,6 +42,7 @@ const ApplicationFormSection = () => {
                   };
     
                 try {
+                    infoCate.current.textContent = 'Processing ... Please wait'
                     const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:Y1Oqmtn2/applicant', {
                         method: 'POST',
                         body: JSON.stringify(applicantData),
@@ -47,16 +50,19 @@ const ApplicationFormSection = () => {
                     });
     
                     if (!response.ok) {
+                        infoCate.current.textContent = ''
                         throw new Error (`API request failed with status ${response.status}`);
                         
                     }
     
                     else {
+                    infoCate.current.textContent = ''
                     alert (`Congratulations 🎉🎉 on Booking a Seat ${firstName}, we would contact you shortly with all the neccessary information needed.`);
                     resetInput();
                     }
     
                 } catch (error) {
+                    infoCate.current.textContent = ''
                     alert(error || 'Error in Submitting, Try Again')
                 }
     
@@ -190,7 +196,9 @@ const ApplicationFormSection = () => {
                         </div>
             
                     </div>
-
+                    <div className='form-info-box' ref={infoCate}>
+                       
+                    </div>
                     <div>
                         <button type='submit' className='submit-btn'>Apply Now</button>
                     </div>
